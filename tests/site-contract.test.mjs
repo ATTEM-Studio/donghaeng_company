@@ -53,3 +53,8 @@ test('hero visual communicates creator spread and search intent', () => {
   assert.match(polish,/\.search-cue/);
   assert.match(layout,/\.\/polish\.css/);
 });
+
+test('opengraph title container uses an explicit flex layout for Satori', () => {
+  const og=read('app/opengraph-image.tsx');
+  assert.match(og,/fontSize:72[^}]*display:"flex"[^}]*flexDirection:"column"/);
+});
