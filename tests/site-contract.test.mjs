@@ -2,7 +2,54 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
-test('approved brand flow and hero copy are implemented', () => { const content = read('content/site.ts'); for (const value of ['발견','확산','검색','확신','방문']) assert.match(content,new RegExp(value)); assert.match(content,/좋은 매장이/); assert.match(content,/더 많은 사람에게/); assert.match(content,/발견되도록/); });
-test('approved pricing contract is preserved', () => { const content=read('content/site.ts'); assert.match(content,/월 55만원/); assert.match(content,/VAT 포함/); assert.match(content,/최소 3개월/); assert.match(content,/이후 1개월 단위 연장/); });
-test('page includes the complete persuasion sequence', () => { const page=read('app/page.tsx'); for(const component of ['Hero','ProblemSection','DiscoverySection','ProofSection','ViralNetwork','PivotSection','DonghaengFlow','InstagramToNaver','ServicesSection','WhyDonghaeng','LocalPhilosophy','PricingSection','FinalCta']) assert.match(page,new RegExp(component)); });
-test('accessibility-safe motion is present', () => { const css=read('app/globals.css'); const reveal=read('components/Reveal.tsx'); assert.match(css,/prefers-reduced-motion/); assert.match(reveal,/IntersectionObserver/); });
+
+test('approved brand flow and hero copy are implemented', () => {
+  const content = read('content/site.ts');
+  for (const value of ['발견','확산','검색','확신','방문']) assert.match(content,new RegExp(value));
+  assert.match(content,/좋은 매장이/);
+  assert.match(content,/더 많은 사람에게/);
+  assert.match(content,/발견되도록/);
+});
+
+test('approved pricing contract is preserved', () => {
+  const content=read('content/site.ts');
+  assert.match(content,/월 55만원/);
+  assert.match(content,/VAT 포함/);
+  assert.match(content,/최소 3개월/);
+  assert.match(content,/이후 1개월 단위 연장/);
+});
+
+test('page includes the complete persuasion sequence', () => {
+  const page=read('app/page.tsx');
+  for(const component of ['Hero','ProblemSection','DiscoverySection','ProofSection','ViralNetwork','PivotSection','DonghaengFlow','InstagramToNaver','ServicesSection','WhyDonghaeng','LocalPhilosophy','PricingSection','FinalCta']) assert.match(page,new RegExp(component));
+});
+
+test('accessibility-safe motion is present', () => {
+  const css=read('app/globals.css');
+  const polish=read('app/polish.css');
+  const reveal=read('components/Reveal.tsx');
+  assert.match(css,/prefers-reduced-motion/);
+  assert.match(polish,/prefers-reduced-motion/);
+  assert.match(reveal,/IntersectionObserver/);
+});
+
+test('100k proof uses an intersection-aware animated stat', () => {
+  const proof=read('components/ProofSection.tsx');
+  const stat=read('components/AnimatedStat.tsx');
+  assert.match(proof,/AnimatedStat/);
+  assert.match(stat,/IntersectionObserver/);
+  assert.match(stat,/requestAnimationFrame/);
+  assert.match(stat,/prefers-reduced-motion/);
+});
+
+test('hero visual communicates creator spread and search intent', () => {
+  const hero=read('components/Hero.tsx');
+  const polish=read('app/polish.css');
+  const layout=read('app/layout.tsx');
+  assert.match(hero,/creator-bubbles/);
+  assert.match(hero,/search-cue/);
+  assert.match(hero,/여기 어디지\?/);
+  assert.match(polish,/\.creator-bubbles/);
+  assert.match(polish,/\.search-cue/);
+  assert.match(layout,/\.\/polish\.css/);
+});
