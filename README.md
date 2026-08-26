@@ -26,4 +26,6 @@ npm run dev
 npm run verify
 ```
 
+최종 배포 전에는 GitHub Actions에서 동일한 `npm run verify` 전체 검증을 통과한 커밋만 운영에 반영합니다.
+
 실제 로고, 상담 URL, 회사 법적 정보, 공개 가능한 실사/릴스 자산은 제공 후 `content/site.ts` 및 `public/` 자산을 교체합니다.
