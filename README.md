@@ -27,3 +27,5 @@ npm run verify
 ```
 
 실제 로고, 상담 URL, 회사 법적 정보, 공개 가능한 실사/릴스 자산은 제공 후 `content/site.ts` 및 `public/` 자산을 교체합니다.
+
+> V1 visual polish validation branch
