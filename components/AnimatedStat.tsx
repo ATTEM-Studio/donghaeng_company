@@ -16,24 +16,23 @@ export function AnimatedStat({
   ariaLabel,
 }: AnimatedStatProps) {
   const ref = useRef<HTMLSpanElement | null>(null);
-  const [value, setValue] = useState(0);
-  const [started, setStarted] = useState(false);
+  const startedRef = useRef(false);
+  const [value, setValue] = useState(target);
 
   useEffect(() => {
     const node = ref.current;
-    if (!node || started) return;
+    if (!node || startedRef.current) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
-      setValue(target);
-      setStarted(true);
+      startedRef.current = true;
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        setStarted(true);
+        if (!entry?.isIntersecting || startedRef.current) return;
+        startedRef.current = true;
         observer.disconnect();
 
         const startedAt = performance.now();
@@ -51,7 +50,7 @@ export function AnimatedStat({
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [durationMs, started, target]);
+  }, [durationMs, target]);
 
   return (
     <span ref={ref} className="animated-stat" aria-label={ariaLabel ?? `${target.toLocaleString()}${suffix}`}>
