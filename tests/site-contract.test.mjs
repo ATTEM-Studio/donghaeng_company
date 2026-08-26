@@ -26,8 +26,10 @@ test('page includes the complete persuasion sequence', () => {
 
 test('accessibility-safe motion is present', () => {
   const css=read('app/globals.css');
+  const polish=read('app/polish.css');
   const reveal=read('components/Reveal.tsx');
   assert.match(css,/prefers-reduced-motion/);
+  assert.match(polish,/prefers-reduced-motion/);
   assert.match(reveal,/IntersectionObserver/);
 });
 
@@ -42,10 +44,12 @@ test('100k proof uses an intersection-aware animated stat', () => {
 
 test('hero visual communicates creator spread and search intent', () => {
   const hero=read('components/Hero.tsx');
-  const css=read('app/globals.css');
+  const polish=read('app/polish.css');
+  const layout=read('app/layout.tsx');
   assert.match(hero,/creator-bubbles/);
   assert.match(hero,/search-cue/);
   assert.match(hero,/여기 어디지\?/);
-  assert.match(css,/\.creator-bubbles/);
-  assert.match(css,/\.search-cue/);
+  assert.match(polish,/\.creator-bubbles/);
+  assert.match(polish,/\.search-cue/);
+  assert.match(layout,/\.\/polish\.css/);
 });
