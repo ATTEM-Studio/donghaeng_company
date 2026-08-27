@@ -498,16 +498,50 @@
   .viral-wave{width:96px;height:96px}
 }
 
-@media (prefers-reduced-motion:reduce){
-  .phone,
-  .creator-bubble,
-  .search-cue,
-  .hero-visual::before,
-  .viral-wave,
-  .viral-ring::after,
-  .viral-node,
-  .viral-orbit-signal{
-    animation:none!important;
+/* Desktop service cards: equal visual weight and consistent content rhythm. */
+@media (min-width:1025px){
+  .services-section .service-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    align-items:stretch;
   }
-  .proof-card::after{display:none}
+
+  .services-section .service-card,
+  .services-section .service-1,
+  .services-section .service-3{
+    grid-column:auto;
+    min-height:270px;
+    height:100%;
+    padding:28px 26px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .services-section .service-card small{
+    margin-top:26px;
+    min-height:1.4em;
+  }
+
+  .services-section .service-card h3{
+    margin:9px 0 18px;
+  }
+
+  .services-section .service-card ul{
+    margin-top:auto;
+    align-content:flex-start;
+  }
+}
+
+@media (min-width:821px) and (max-width:1024px){
+  .services-section .service-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:16px;
+  }
+
+  .services-section .service-card,
+  .services-section .service-1,
+  .services-section .service-3{
+    grid-column:auto;
+    min-height:250px;
+  }
 }
