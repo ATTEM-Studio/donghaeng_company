@@ -90,3 +90,11 @@ test('Node runtime is pinned to 24 across local, CI, and deployment metadata', (
   assert.equal(nvmrc, '24');
   assert.match(workflow,/node-version:\s*24/);
 });
+
+test('desktop services use a uniform four-column grid without featured spans', () => {
+  const polish=read('app/polish.css');
+  assert.match(polish,/@media\s*\(min-width:\s*1025px\)[\s\S]*?\.services-section \.service-grid\s*\{[\s\S]*?grid-template-columns:\s*repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(polish,/@media\s*\(min-width:\s*1025px\)[\s\S]*?\.services-section \.service-card[\s\S]*?grid-column:\s*auto/);
+  assert.match(polish,/@media\s*\(min-width:\s*1025px\)[\s\S]*?\.services-section \.service-card[\s\S]*?display:\s*flex[\s\S]*?flex-direction:\s*column/);
+  assert.match(polish,/@media\s*\(min-width:\s*1025px\)[\s\S]*?\.services-section \.service-card ul[\s\S]*?margin-top:\s*auto/);
+});
