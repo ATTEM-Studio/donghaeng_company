@@ -68,3 +68,15 @@ test('typography hierarchy emphasizes headings and cards while keeping body copy
   assert.match(polish,/\.flow-card h3[\s\S]*?font-weight:\s*var\(--weight-card\)/);
   assert.match(polish,/\.section-copy[\s\S]*?font-weight:\s*var\(--weight-body\)/);
 });
+
+test('viral network uses a golden-circle target with staged outward propagation', () => {
+  const network=read('components/ViralNetwork.tsx');
+  const polish=read('app/polish.css');
+  for(const className of ['viral-target','viral-ring ring-1','viral-ring ring-2','viral-ring ring-3','viral-core','viral-node','viral-wave']) assert.match(network,new RegExp(className));
+  for(const label of ['OWNED MEDIA','CREATOR NETWORK','LOCAL COMMUNITY','LOCAL AUDIENCE']) assert.match(network,new RegExp(label));
+  assert.match(polish,/\.viral-target/);
+  assert.match(polish,/\.viral-ring/);
+  assert.match(polish,/@keyframes viralWave/);
+  assert.match(polish,/@keyframes nodeSignal/);
+  assert.match(polish,/prefers-reduced-motion[\s\S]*?\.viral-wave/);
+});
