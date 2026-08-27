@@ -58,3 +58,13 @@ test('opengraph title container uses an explicit flex layout for Satori', () => 
   const og=read('app/opengraph-image.tsx');
   assert.match(og,/fontSize:72[^}]*display:"flex"[^}]*flexDirection:"column"/);
 });
+
+test('typography hierarchy emphasizes headings and cards while keeping body copy moderate', () => {
+  const polish=read('app/polish.css');
+  assert.match(polish,/--weight-body:\s*550/);
+  assert.match(polish,/--weight-card:\s*850/);
+  assert.match(polish,/--weight-section:\s*900/);
+  assert.match(polish,/\.section-heading h2[\s\S]*?font-weight:\s*var\(--weight-section\)/);
+  assert.match(polish,/\.flow-card h3[\s\S]*?font-weight:\s*var\(--weight-card\)/);
+  assert.match(polish,/\.section-copy[\s\S]*?font-weight:\s*var\(--weight-body\)/);
+});
