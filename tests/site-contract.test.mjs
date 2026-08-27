@@ -81,6 +81,7 @@ test('viral network uses a golden-circle target with staged outward propagation'
   assert.match(polish,/prefers-reduced-motion[\s\S]*?\.viral-wave/);
 });
 
+// Keep every execution environment on the same Node major.
 test('Node runtime is pinned to 24 across local, CI, and deployment metadata', () => {
   const pkg = JSON.parse(read('package.json'));
   const nvmrc = read('.nvmrc').trim();
