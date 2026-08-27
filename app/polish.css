@@ -545,3 +545,17 @@
     min-height:250px;
   }
 }
+
+@media (prefers-reduced-motion:reduce){
+  .phone,
+  .creator-bubble,
+  .search-cue,
+  .hero-visual::before,
+  .viral-wave,
+  .viral-ring::after,
+  .viral-node,
+  .viral-orbit-signal{
+    animation:none!important;
+  }
+  .proof-card::after{display:none}
+}
