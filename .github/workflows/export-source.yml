@@ -1,0 +1,27 @@
+name: export-source-package
+
+on:
+  push:
+    branches:
+      - export/source-package-20260827
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload clean source package
+        uses: actions/upload-artifact@v4
+        with:
+          name: donghaeng-company-main
+          path: |
+            .
+            !.git/**
+            !node_modules/**
+            !.next/**
+            !.github/workflows/export-source.yml
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
