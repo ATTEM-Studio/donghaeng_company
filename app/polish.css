@@ -1,5 +1,61 @@
 /* V1 visual polish — loaded after globals.css so these rules only refine the approved base. */
 
+:root{
+  --weight-body:550;
+  --weight-support:650;
+  --weight-card:850;
+  --weight-section:900;
+}
+
+/* Stronger hierarchy: emphasize decision points without making every line heavy. */
+.section-heading h2,
+.section h2,
+.network-copy h2,
+.bridge-section h2,
+.pivot h2,
+.local-philosophy h2,
+.final-cta h2{
+  font-weight:var(--weight-section);
+}
+
+.hero-body,
+.section-copy,
+.network-copy p:last-child,
+.flow-card p,
+.why-card p,
+.local-philosophy p:last-child{
+  font-weight:var(--weight-body);
+}
+
+.flow-card h3,
+.service-card h3,
+.why-card h3,
+.journey-step strong,
+.proof-card strong,
+.search-card strong,
+.search-cue strong,
+.contract b{
+  font-weight:var(--weight-card);
+}
+
+.service-card small,
+.service-card li,
+.price-included li,
+.stat-label{
+  font-weight:var(--weight-support);
+}
+
+.button,
+.desktop-nav,
+.mobile-menu,
+.mobile-sticky a{
+  font-weight:900;
+}
+
+.price-row strong{
+  font-weight:950;
+}
+
 .hero-visual::before{
   content:"";
   position:absolute;
