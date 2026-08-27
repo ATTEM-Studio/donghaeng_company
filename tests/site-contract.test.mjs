@@ -80,3 +80,12 @@ test('viral network uses a golden-circle target with staged outward propagation'
   assert.match(polish,/@keyframes nodeSignal/);
   assert.match(polish,/prefers-reduced-motion[\s\S]*?\.viral-wave/);
 });
+
+test('Node runtime is pinned to 24 across local, CI, and deployment metadata', () => {
+  const pkg = JSON.parse(read('package.json'));
+  const nvmrc = read('.nvmrc').trim();
+  const workflow = read('.github/workflows/verify.yml');
+  assert.equal(pkg.engines.node, '24.x');
+  assert.equal(nvmrc, '24');
+  assert.match(workflow,/node-version:\s*24/);
+});
